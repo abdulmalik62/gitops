@@ -1,0 +1,3 @@
+resources:
+  - hasura-deploy.yaml
+  - hasura-service.yaml

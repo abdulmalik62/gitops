@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hasura
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hasura
+  template:
+    metadata:
+      labels:
+        app: hasura
+    spec:
+      containers:
+        - name: hasura
+          image: hasura/graphql-engine:v2.26.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: HASURA_GRAPHQL_DATABASE_URL
+              value: postgres://admin:admin123@postgres-service:5432/orbitora
+            - name: HASURA_GRAPHQL_ENABLE_CONSOLE
+              value: "true"
+            - name: HASURA_GRAPHQL_ADMIN_SECRET
+              value: "14f1be42ed24d9203d2af3173f95abd6eca67a3456e208290c8836c5831a44e6"
