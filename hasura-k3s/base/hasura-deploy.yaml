@@ -19,7 +19,7 @@ spec:
             - containerPort: 8080
           env:
             - name: HASURA_GRAPHQL_DATABASE_URL
-              value: postgres://admin:admin123@postgres-service:5432/orbitora
+              value: postgres://admin:admin123@postgres-service:5432/postgres
             - name: HASURA_GRAPHQL_ENABLE_CONSOLE
               value: "true"
             - name: HASURA_GRAPHQL_ADMIN_SECRET
