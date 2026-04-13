@@ -1,0 +1,2 @@
+resources:
+  - postgres-deploy.yaml

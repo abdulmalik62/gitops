@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-initdb-config
+data:
+  init-db.sh: |
+    #!/bin/bash
+    set -e
+
+    # Connect as the default superuser 'postgres'
+    psql -v ON_ERROR_STOP=1 --username "postgres" <<-EOSQL
+        -- Create the 'admin' role
+        CREATE ROLE admin WITH LOGIN PASSWORD 'admin123';
+
+        -- Create the 'masterdb' database owned by 'admin'
+        CREATE DATABASE masterdb OWNER admin;
+
+        -- Now connect as 'admin' and create additional databases
+        \connect masterdb;
+        CREATE DATABASE orbitora;
+        #CREATE DATABASE ;
+        #CREATE DATABASE ;
+    EOSQL
